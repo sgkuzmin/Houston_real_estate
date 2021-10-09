@@ -1,0 +1,15 @@
+acct
+str_num
+str_num_sfx
+str
+str_sfx
+str_sfx_dir
+str_unit
+site_addr_1
+site_addr_2
+site_addr_3
+bld_ar
+land_ar
+tot_appr_val
+tot_mkt_val
+
