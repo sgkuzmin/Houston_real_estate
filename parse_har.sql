@@ -85,6 +85,30 @@ select * from har limit 25;
 select * from real_acct limit 25;
 select * from har where address like ('2414%')
 
+select str_unit from real_acct where str_unit = '      '
+
+update real_acct 
+set str_unit = 'None'
+where length(str_unit) < 2;
+
+update real_acct 
+set str_unit = 'None'
+where str_unit is null;
+
+select ha.mls, r.str_num,r.str,r.str_unit,r.site_addr_1,ha.address,r.site_addr_3,
+ha.price as "har price", r.tot_appr_val as "hcad appraised value",
+r.tot_mkt_val as "hcad total mkt value"
+from har_address ha, real_acct r
+where ha.zipcode = r.site_addr_3
+and upper(ha.streetname) = upper(r.str)
+and ha.addressnumber = r.str_num
+and ha.occupancyidentifier=r.str_unit
+
+select str_unit from real_acct 
+where str_unit='None'
+
+
+
 select r.str,r.site_addr_1 as "hcad_address",r.site_addr_3 as "hcad zip",h.mls,h.address as "har address",
 h.address2 as "har address parse"
 from real_acct r, har h
