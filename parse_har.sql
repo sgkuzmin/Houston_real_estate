@@ -14,7 +14,7 @@ where str_num = '2414' AND STR = 'DEL NORTE'
 
 select count(*) from har
 select * from har;
-select * from real_acct;
+select * from real_acct limit(25);
 
 -- additional data from har caused negative substring length not allowed
 select substring(address, position(' ' in address),position(',' in address) - position(' ' in address )) as street_name from har
@@ -111,8 +111,32 @@ where h.har_zip = '77018'
 -- and upper(h.address2) like ('%YALE%')
 and h.address2 = '4514 Yale'
 
+alter table real_acct 
+alter column str_num type text;
 
 -- columns we want 
-select r.str,r.site_addr_1 as "hcad_address",r.site_addr_3 as "hcad zip"
+select r.str_num,r.str,r.site_addr_1,r.site_addr_3
 from real_acct r
-where r.site_addr_3 ='77450'
+where r.site_addr_3 ='77018'
+
+-- addressnumber,streetname,zipcode
+
+select ha."AddressNumber",ha."StreetName",ha."ZipCode" from har_address ha
+where ha."ZipCode" = '77018';
+
+select ha."AddressNumber",ha."StreetName",ha."ZipCode", r.str_num,r.str,r.site_addr_1,r.site_addr_3 
+from har_address ha, real_acct r
+where ha."ZipCode" = '77018'
+and ha."ZipCode" = r.site_addr_3
+and upper(ha."StreetName") = upper(r.str)
+and ha."AddressNumber" = r.str_num
+
+
+
+
+
+
+select * from har limit(25);
+select * from har_address limit(25);
+select * from real_acct limit(25);
+
