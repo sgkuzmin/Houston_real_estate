@@ -89,8 +89,28 @@ select r.str,r.site_addr_1 as "hcad_address",r.site_addr_3 as "hcad zip",h.mls,h
 h.address2 as "har address parse"
 from real_acct r, har h
 where r.site_addr_1 = h.har_zip
-and r.site_addr_3 = '77450'
+and h.har_zip = '77018'
 limit 25
+
+select r.site_addr_1 as "hcad_address",r.site_addr_3,h.mls,h.address2,h.address,h.city,h.har_zip
+-- select count(*)
+from real_acct r, har h
+where upper(r.site_addr_1) = upper(h.address2)
+and h.har_zip = '77018'
+
+select r.site_addr_1
+from real_acct r
+where r.site_addr_3 = '77018'
+-- and upper(r.site_addr_1) like ('%YALE%')
+and upper(r.site_addr_1) = upper('4514 YALE')
+
+
+select *
+from har h
+where h.har_zip = '77018'
+-- and upper(h.address2) like ('%YALE%')
+and h.address2 = '4514 Yale'
+
 
 -- columns we want 
 select r.str,r.site_addr_1 as "hcad_address",r.site_addr_3 as "hcad zip"
