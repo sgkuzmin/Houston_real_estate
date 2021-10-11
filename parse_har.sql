@@ -6,7 +6,7 @@ select * from real_acct
 where site_addr_1 = like('%PARK%')
 
 select * from real_acct
-where str_num = 4535 AND STR = 'PARK';
+where str_num = '4535' AND STR = 'PARK';
 
 select * from real_acct
 where str_num = '2414' AND STR = 'DEL NORTE'
@@ -112,7 +112,7 @@ where h.har_zip = '77018'
 and h.address2 = '4514 Yale'
 
 alter table real_acct 
-alter column str_num type text;
+alter column str_num type varchar;
 
 -- columns we want 
 select r.str_num,r.str,r.site_addr_1,r.site_addr_3
@@ -143,14 +143,12 @@ and ha."AddressNumber" = r.str_num
 and r.str = 'DEL NORTE'
 and ha.mls = 18712079
 
-select ha."mls", r.str_num,r.str,r.site_addr_1,r.site_addr_3,ha.price as "har price", r.tot_appr_val as "hcad appraised value",
+select ha.mls, r.str_num,r.str,r.site_addr_1,r.site_addr_3,ha.price as "har price", r.tot_appr_val as "hcad appraised value",
 r.tot_mkt_val as "hcad total mkt value"
 from har_address ha, real_acct r
-where ha."ZipCode" = r.site_addr_3
-and upper(ha."StreetName") = upper(r.str)
-and ha."AddressNumber" = r.str_num
-and r.str = 'DEL NORTE'
-
+where ha.zipcode = r.site_addr_3
+and upper(ha.streetname) = upper(r.str)
+and ha.addressnumber = r.str_num
 
 
 
