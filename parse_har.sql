@@ -124,13 +124,24 @@ where r.site_addr_3 ='77018'
 select ha."AddressNumber",ha."StreetName",ha."ZipCode" from har_address ha
 where ha."ZipCode" = '77018';
 
-select ha."AddressNumber",ha."StreetName",ha."ZipCode", r.str_num,r.str,r.site_addr_1,r.site_addr_3 
+select ha."mls",ha."AddressNumber",ha."StreetName",ha."ZipCode", r.str_num,r.str,r.site_addr_1,r.site_addr_3 
 from har_address ha, real_acct r
 where ha."ZipCode" = '77018'
 and ha."ZipCode" = r.site_addr_3
 and upper(ha."StreetName") = upper(r.str)
 and ha."AddressNumber" = r.str_num
+and r.str = 'DEL NORTE'
+and ha.mls = 18712079
 
+select ha."mls", r.str_num,r.str,r.site_addr_1,r.site_addr_3,ha.price as "har price", r.tot_appr_val as "hcad appraised value",
+r.tot_mkt_val as "hcad total mkt value"
+from har_address ha, real_acct r
+where ha."ZipCode" = '77018'
+and ha."ZipCode" = r.site_addr_3
+and upper(ha."StreetName") = upper(r.str)
+and ha."AddressNumber" = r.str_num
+and r.str = 'DEL NORTE'
+and ha.mls = 18712079
 
 
 
